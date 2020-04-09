@@ -1,0 +1,105 @@
+class SimpleVector {
+private:
+	int  s;
+	int* arr;
+public:
+	SimpleVector() {
+		arr[0] = 0;
+		s = 0;
+	}
+	SimpleVector(int n) {
+		arr = new int[n];
+		s = n;
+	}
+	~SimpleVector() {
+		delete[] arr;
+	}
+	int Size() {
+		return s;
+	}
+	void push_back(int x) {
+		s = Size() + 1;
+		arr[Size()] = x;
+	}
+	int find(int x) {
+		for (int i = 1; i <= Size(); ++i)
+			if (arr[i] == x) return i;
+			else return -1;
+	}
+	int operator [](int x) {
+		return arr[x];
+	}
+	void remove() {
+		for (int i = 1; i < Size(); ++i)
+			arr[i] = arr[i + 1];
+		s = Size() - 1;
+	}
+	bool insert_after(int x, int y) {
+		if (find(y) != -1) {
+			return true;
+			s = Size() + 1;
+			arr[s] = 0;
+			for (int j = s; j > find(y); --j)
+				arr[j] = arr[j - 1];
+		}
+		else return false;
+	}
+};
+
+
+template <typename T>
+class List {
+
+	struct Item {
+		T inf;
+		Item* next;
+		Item(T x, Item* ref = nullptr) : inf(x), next(ref) {}
+	} *first = nullptr, * last = nullptr;
+
+public:
+	void add(T x) {
+		Item* item = new Item(x);
+		if (last != nullptr)
+			last->next = item;
+		last = item;
+		if (first == nullptr)
+			first = last;
+	}
+
+	void print() {
+		for (Item* t = first; t != nullptr; t = t->next)
+			cout << t->inf << " ";
+		cout << endl;
+	}
+
+	void doubleX(T x) {
+		for (Item* t = first; t != nullptr; t = t->next) {
+			if (t->inf == x) {
+				Item* newItem = new Item(x, t->next);
+				t->next = newItem;
+				t = t->next;
+			}
+		}
+	}
+
+	void Сout(int x) {
+		for (int i = first; i != nullprt; i = i->next)
+			if (i->inf == x) {
+				cout << i->inf << " ";
+				i = i->next;
+			}
+			else cout << i->inf << " ";
+	}
+	void remove(int x) {
+		for (int i = first; i != nullprе; i = i->next)
+			if (i->inf == x) {
+				for (int k = 0; k < i; ++k) {
+					Item* new;
+					--size;
+					new = head;
+					head = head->next;
+				}
+				i == nullprt;
+			}
+	}
+};
